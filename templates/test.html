@@ -1,0 +1,233 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Seremote</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style test.css') }}"
+    >
+</head>
+
+<body>
+    <div class="app">
+        <header class="header">
+            <div class="brand">
+                <div class="logo">S</div>
+
+                <div>
+                    <h1>Seremote</h1>
+                    <p>kontrol pc mu sesuka hatimu</p>
+                </div>
+            </div>
+
+            <div class="pill">● Local mode</div>
+        </header>
+
+        <section class="card">
+            <div class="cardhead">
+                <strong>▣ Windows Desktop</strong>
+                <span class="subtle" id="streamInfo">
+                    480p · 15 FPS
+                </span>
+            </div>
+
+            <div class="screenbox" id="screenbox">
+                <img
+                    id="screen"
+                    src="/video_feed"
+                    alt="Windows Desktop"
+                    draggable="false"
+                >
+            </div>
+
+            <div class="screenbottom">
+                <span class="subtle" id="modeHint">
+                    ✦ Left Click aktif
+                </span>
+
+                <button class="smallbtn" id="fullscreenBtn">
+                    ⛶ Fullscreen
+                </button>
+            </div>
+        </section>
+
+        <h2 class="sectiontitle">Quick Controls</h2>
+
+        <div class="tools">
+            <button class="tool active" id="leftBtn">
+                <span>↖</span>
+                <small>Left Click</small>
+            </button>
+
+            <button class="tool" id="rightBtn">
+                <span>◉</span>
+                <small>Right Click</small>
+            </button>
+
+            <button class="tool" id="doubleBtn">
+                <span>⧉</span>
+                <small>Double</small>
+            </button>
+
+            <button class="tool" id="dragBtn">
+                <span>✥</span>
+                <small>Drag</small>
+            </button>
+
+            <button class="tool" id="scrollUp">
+                <span>↑</span>
+                <small>Scroll Up</small>
+            </button>
+
+            <button class="tool" id="scrollDown">
+                <span>↓</span>
+                <small>Scroll Down</small>
+            </button>
+
+            <button class="tool" id="keyboardBtn">
+                <span>⌨</span>
+                <small>Keyboard</small>
+            </button>
+
+            <button class="tool" id="resetBtn">
+                <span>↺</span>
+                <small>Reset</small>
+            </button>
+        </div>
+
+        <h2 class="sectiontitle">Streaming Settings</h2>
+
+        <section class="card">
+            <div class="presets" id="presets">
+                <button class="preset" data-preset="hemat">
+                    Hemat
+                </button>
+
+                <button class="preset active" data-preset="ringan">
+                    Ringan
+                </button>
+
+                <button class="preset" data-preset="balanced">
+                    Balanced
+                </button>
+
+                <button class="preset" data-preset="smooth">
+                    Smooth
+                </button>
+
+                <button class="preset" data-preset="detail">
+                    Detail
+                </button>
+            </div>
+
+            <div class="settingsgrid">
+                <div class="field">
+                    <label for="resolution">Resolution</label>
+
+                    <select id="resolution">
+                        <option value="240">240p</option>
+                        <option value="360">360p</option>
+                        <option value="480" selected>480p</option>
+                        <option value="720">720p</option>
+                        <option value="1080">1080p</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="fps">Frame Rate</label>
+
+                    <select id="fps">
+                        <option value="5">5</option>
+                        <option value="15" selected>15</option>
+                        <option value="30">30</option>
+                        <option value="45">45</option>
+                        <option value="60">60</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="quality">
+                        JPEG Quality:
+                        <span id="qualityValue">45%</span>
+                    </label>
+
+                    <input
+                        id="quality"
+                        type="range"
+                        min="25"
+                        max="80"
+                        step="5"
+                        value="45"
+                    >
+                </div>
+            </div>
+
+            <div class="settingsfoot">
+                <span class="subtle">
+                    Semakin tinggi setting, semakin besar kemungkinan
+                    beban dan delay.
+                </span>
+
+                <button class="primary" id="applySettings">
+                    Terapkan Settings
+                </button>
+            </div>
+        </section>
+
+        <section class="card keyboard" id="keyboardPanel">
+            <div class="cardhead">
+                <strong>⌨ Remote Keyboard</strong>
+            </div>
+
+            <textarea
+                id="textInput"
+                rows="3"
+                placeholder="Mau ngetik apa nih?"
+            ></textarea>
+
+            <div class="keyrow">
+                <button class="primary" id="sendText">
+                    Kirim Teks
+                </button>
+
+                <button class="smallbtn" data-key="enter">
+                    Enter
+                </button>
+
+                <button class="smallbtn" data-key="backspace">
+                    Backspace
+                </button>
+
+                <button class="smallbtn" data-key="tab">
+                    Tab
+                </button>
+
+                <button class="smallbtn" data-key="esc">
+                    Esc
+                </button>
+            </div>
+        </section>
+
+        <div class="status" id="status" role="status">
+            Seremote siap digunakan.
+        </div>
+
+        <div class="footer">
+            Seremote · Soft Purple Edition
+        </div>
+    </div>
+
+    <script id="seremote-config" type="application/json">
+        {{ {"token": token}|tojson }}
+    </script>
+
+    <script
+        src="{{ url_for('static', filename='js/java test.js') }}"
+    ></script>
+</body>
+</html>
